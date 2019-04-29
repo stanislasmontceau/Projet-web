@@ -1,3 +1,19 @@
+<?php
+session_start();
+if(isset($_SESSION['user']) and $_SESSION['user']=="stan"){
+?>
+
+<?php
+}
+else{
+  header("location: login.php"); 
+}
+?>
+
+
+
+
+
 <?PHP
 include "../entities/restaurant.php";
 include "../core/restaurantC.php";
@@ -49,7 +65,7 @@ $listeRestaurants=$restaurant1C->afficherRestaurants();
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -61,7 +77,7 @@ $listeRestaurants=$restaurant1C->afficherRestaurants();
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -123,13 +139,15 @@ $listeRestaurants=$restaurant1C->afficherRestaurants();
         <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
+            <a class="collapse-item" href="login.php">Login</a>
             <a class="collapse-item" href="register.html">Register</a>
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item active" href="afficherRestaurant.php">Afficher Restaurants</a>
             <a class="collapse-item active" href="ajoutRestaurant.php">Ajouter Restaurant</a>
+            <a class="collapse-item active" href="afficherNewsletter.php">Afficher Mails </a>
+            <a class="collapse-item active" href="envoyerNewsletter.php">Envoyer Newsletter </a>
           </div>
         </div>
       </li>
@@ -318,7 +336,7 @@ $listeRestaurants=$restaurant1C->afficherRestaurants();
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span> <!-- remplacer par admin -->
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -491,7 +509,7 @@ $listeRestaurants=$restaurant1C->afficherRestaurants();
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>
@@ -508,5 +526,14 @@ $listeRestaurants=$restaurant1C->afficherRestaurants();
   <script src="js/sb-admin-2.min.js"></script>
 
 </body>
+
+
+
+<?php
+}
+else{
+  header("location: accueil.php"); 
+}
+?>
 
 </html>

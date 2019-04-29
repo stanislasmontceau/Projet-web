@@ -1,3 +1,38 @@
+<?php
+session_start();
+if(isset($_SESSION['user']) and $_SESSION['user']=="stan"){
+?>
+
+<?php
+}
+else{
+	header("location: login.php"); 
+}
+?>
+
+
+
+
+<?PHP
+include "../entities/newsletter.php";
+include "../core/newsletterC.php";
+if (isset($_POST['modifier'])){
+
+ $newsletter=new newsletter($_POST['nombre_mails'],$_POST['mail'],$_POST['type']);
+ $newsletterC=new NewsletterC();
+ $newsletterC->modifierNewsletter($newsletter,$_POST['nombre_mails_ini']);
+
+  //header('Location: ajoutNewsletter.php');
+
+  
+}
+$newsletter1C=new NewsletterC();
+$listeNewsletters=$newsletter1C->afficherNewsletters();
+
+//var_dump($listeNewsletters->fetchAll());
+?>
+
+
 <html>
 <html lang="en">
 
@@ -9,8 +44,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Restaurant</title>
-  <HTML>
+  <title>SB Admin 2 - 404</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,14 +57,14 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
+  <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -42,7 +76,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -109,8 +143,8 @@
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item active" href="afficherRestaurant.php">Afficher Restaurant</a>
-            <a class="collapse-item active" href="ajoutRestaurant.php"> Ajouter Restaurant</a>
+            <a class="collapse-item active" href="afficherRestaurant.php">Afficher Restaurants</a>
+            <a class="collapse-item active" href="ajoutRestaurant.php">Ajouter Restaurant</a>
             <a class="collapse-item active" href="afficherNewsletter.php">Afficher Mails </a>
             <a class="collapse-item active" href="envoyerNewsletter.php">Envoyer Newsletter </a>
           </div>
@@ -301,7 +335,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span> <!-- remplacer par admin -->
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -334,62 +368,119 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Restaurant</h1>
+       	<!-- barre de recherhce -->
+       <!-- 	<div class="search-content">
+                                        <form action = "chercherNewsletter.php" method = "get" value="votre recherche...">
+                                            <input type = "search" name = "terme">
+                                          
+                                      
+                                       <input  type = "submit" name = "s" value="Rechercher">
+                                           
+                                        </form> -->
 
-           <form method="POST" action="ajoutRestaurant.php">       
-              <td>Ajouter Restaurant</td><br>
-              <table>
-	          <tr>
-              <td>CIN</td>
-              <td><input type="number" required name="cin" placeholder="1"></td>
-              </tr>
-              <tr>
-              <td>Nom de l'administrateur</td>
-              <td><input type="text" required name="nom" placeholder="stan"></td>
-              </tr>
-              <tr>
-              <td>Nom du restaurant</td>
-              <td><input type="text" required name="nom_restaurant" placeholder="macdonalds"></td>
+          <!-- Affichage newsletters -->
+          
+			
+      <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h4 class="m-0 font-weight-bold text-primary">Newsletter</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                  <div class="search-content">
+                                        <form action = "chercherNewsletter.php" method = "get" value="votre recherche...">
+                                            <input type = "search" name = "terme">
+                                          
+                                      
+                                       <input  type = "submit" name = "s" value="Rechercher">
+                                           
+                                        </form>
 
-              </tr>
-              <tr>
-              <td>Type</td>
-              <td><input type="radio" name="type" value="restaurant" />
-              <label for="q0r1">Restaurant</label></td>
-              <td><input type="radio" name="type" value="fast-food" />
-              <label for="q0r2">Fast-food</label></td>
-              <td><input type="radio" name="type" value="boulangerie" />
-              <label for="q0r3">Boulangerie</label></td>
-              <td><input type="radio" name="type" value="cafe" />
-              <label for="q0r3">Café</label></td> </br>
-              </tr>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre de mails par mois</th>
+                      <th>Mails</th>
+                      <th>Type</th>
+                      <th>supprimer</th>
+                      <th>modifier</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Nombre de mails par mois</th>
+                      <th>Mails</th>
+                      <th>Type</th>
+                      <th>supprimer</th>
+                      <th>modifier</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <?PHP
+				foreach($listeNewsletters as $row){
+						?>
+				<tr>
+					<td><?PHP echo $row['nombre_mails']; ?></td>
+					<td><?PHP echo $row['mail']; ?></td>
+					<td><?PHP echo $row['type']; ?></td>
+					<td><form method="POST" action="supprimerNewsletter.php">
+					<input type="submit" name="supprimer" value="supprimer">
+					<input type="hidden" value="<?PHP echo $row['nombre_mails']; ?>" name="nombre_mails">
+					</form>
+					</td>
+					<td><a href="modifierNewsletter.php?nombre_mails=<?PHP echo $row['nombre_mails']; ?>">
+						Modifier</a></td>
+					</tr>
+							<?PHP
+						}
+						?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-               <!-- <tr>
-                <td>
-                <span class="type">Type</span>
-                <input type="radio" name="rep"/>
-                <label for="q0r1">Restaurant</label>
-                <input type="radio" name="rep"/>
-                <label for="q0r2">Fast-food</label>
-                <input type="radio" name="rep"/>
-                <label for="q0r3">Boulangerie</label> </br>
-                </td>
-              </tr>  -->
-
-              <tr>
-              <td>Description</td>
-              <td><input type="text" name="description" placeholder="enseigne international"></td>
-              </tr>
-              <tr>
-              <td></td>
-              <td><input type="submit" name="ajouter" value="ajouter"></td>
-              </tr>
-              </table>
-              </form>
-                     
         </div>
+        </div>
+
+
+
+
+
+
+
+
         <!-- /.container-fluid -->
+        	<br><br><br>
+        	<?php echo '<a href="javascript:window.print()">IMPRIMER CETTE PAGE</a>'; ?>
+
+<?php
+require ('db.php');
+
+
+ob_start();
+?>
+<?php
+$content= ob_get_clean();
+require('html2pdf/html2pdf.class.php');
+try{
+$pdf=new html2pdf('p','A4','fr','true','UTF-8');
+$pdf->pdf->SetDisplayMode('fullpage');
+
+$pdf->writeHTML($content);
+//$pdf->pdf->IncludeJS('print(true)');
+$pdf->Output('test.pdf');
+}
+catch(HTML2PDF_exception $e)
+{
+  die($e);
+}
+
+?>
+
+
+
+
 
       </div>
       <!-- End of Main Content -->
@@ -446,32 +537,6 @@
 
 </body>
 
+
+
 </html>
-
-
-
-
-<!-- php de la page ajoutRestaurant.php -->
-<?PHP
-include "../entities/restaurant.php";
-include "../core/restaurantC.php";
-
-if (isset($_POST['cin']) and isset($_POST['nom']) and isset($_POST['nom_restaurant']) and isset($_POST['type']) and isset($_POST['description'])){
-$restaurant1=new restaurant($_POST['cin'],$_POST['nom'],$_POST['nom_restaurant'],$_POST['type'],$_POST['description']);
-//Partie2
-/*
-var_dump($restaurant1);
-}
-*/
-//Partie3
-$restaurant1C=new RestaurantC();
-$restaurant1C->ajouterRestaurant($restaurant1);
-header('Location: afficherRestaurant.php');
-
-  
-}else{
-  echo "";
-}
-//*/
-
-?>

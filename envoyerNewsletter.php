@@ -1,4 +1,23 @@
-<html>
+<?php
+session_start();
+if(isset($_SESSION['user']) and $_SESSION['user']=="stan"){
+?>
+
+<?php
+}
+else{
+  header("location: login.php"); 
+}
+?>
+
+
+
+
+
+
+
+
+ <html>
 <html lang="en">
 
 <head>
@@ -9,8 +28,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Restaurant</title>
-  <HTML>
+  <title>SB Admin 2 - 404</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,14 +41,14 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
+  <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -42,7 +60,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -109,8 +127,8 @@
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item active" href="afficherRestaurant.php">Afficher Restaurant</a>
-            <a class="collapse-item active" href="ajoutRestaurant.php"> Ajouter Restaurant</a>
+            <a class="collapse-item active" href="afficherRestaurant.php">Afficher Restaurants</a>
+            <a class="collapse-item active" href="ajoutRestaurant.php">Ajouter Restaurant</a>
             <a class="collapse-item active" href="afficherNewsletter.php">Afficher Mails </a>
             <a class="collapse-item active" href="envoyerNewsletter.php">Envoyer Newsletter </a>
           </div>
@@ -301,7 +319,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span> <!-- remplacer par admin -->
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -334,62 +352,134 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Restaurant</h1>
+        <!-- barre de recherhce -->
+       <!--   <div class="search-content">
+                                        <form action = "chercherNewsletter.php" method = "get" value="votre recherche...">
+                                            <input type = "search" name = "terme">
+                                          
+                                      
+                                       <input  type = "submit" name = "s" value="Rechercher">
+                                           
+                                        </form> -->
 
-           <form method="POST" action="ajoutRestaurant.php">       
-              <td>Ajouter Restaurant</td><br>
-              <table>
-	          <tr>
-              <td>CIN</td>
-              <td><input type="number" required name="cin" placeholder="1"></td>
-              </tr>
-              <tr>
-              <td>Nom de l'administrateur</td>
-              <td><input type="text" required name="nom" placeholder="stan"></td>
-              </tr>
-              <tr>
-              <td>Nom du restaurant</td>
-              <td><input type="text" required name="nom_restaurant" placeholder="macdonalds"></td>
+          <!-- Affichage newsletters -->
+          
+      
+<?php
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\Exception;
+ 
+ require 'PHPMailer/Exception.php';
+ require 'PHPMailer/PHPMailer.php';
+ require 'PHPMailer/SMTP.php';
+  if (!$_POST) {
+      //haven't seen the form, so display it
+      $display_block = <<<END_OF_BLOCK
+      <form method="POST" action="$_SERVER[PHP_SELF]">
+      <p><label for="subject">Subject:</label><br/>
+      <input type="text" id="subject" name="subject" size="40" /></p>
+    <p><label for="message">Mail Body:</label><br/>
+     <textarea id="message" name="message" cols="50"   rows="10"></textarea></p>
+     <button type="submit" name="submit" value="submit">Submit</button>
+     </form>
+END_OF_BLOCK;
+ } else if ($_POST) {
+     //want to send form, so check for required fields
+     if (($_POST['subject'] == "") || ($_POST['message'] == "")) {
+         header("Location: newsletter.php");
+          exit;
+     }
 
-              </tr>
-              <tr>
-              <td>Type</td>
-              <td><input type="radio" name="type" value="restaurant" />
-              <label for="q0r1">Restaurant</label></td>
-              <td><input type="radio" name="type" value="fast-food" />
-              <label for="q0r2">Fast-food</label></td>
-              <td><input type="radio" name="type" value="boulangerie" />
-              <label for="q0r3">Boulangerie</label></td>
-              <td><input type="radio" name="type" value="cafe" />
-              <label for="q0r3">Café</label></td> </br>
-              </tr>
+    if (mysqli_connect_errno()) {
+       //if connection fails, stop script execution
+         printf("Connect failed: %s\n", mysqli_connect_error());
+          exit();
+     } else {
+     $mysqli = mysqli_connect("localhost", "root","", "projetweb");
+          //otherwise, get emails from subscribers list
+          $sql = "SELECT * FROM newsletter"; 
+         $result = mysqli_query($mysqli, $sql)
+                   or die(mysqli_error($mysqli));
 
-               <!-- <tr>
-                <td>
-                <span class="type">Type</span>
-                <input type="radio" name="rep"/>
-                <label for="q0r1">Restaurant</label>
-                <input type="radio" name="rep"/>
-                <label for="q0r2">Fast-food</label>
-                <input type="radio" name="rep"/>
-                <label for="q0r3">Boulangerie</label> </br>
-                </td>
-              </tr>  -->
+          //loop through results and send mail
+       while ($row = mysqli_fetch_array($result)) {
+              set_time_limit(0);
+             $email = $row['mail'];
+       
+                  $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+                  try {
+                      //Server settings
+                      $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+                      $mail->isSMTP();                                      // Set mailer to use SMTP
+                      $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                      $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                      $mail->Username = 'omar.trabelsi.1@esprit.tn';                 // SMTP username
+                      $mail->Password = 'gkkcgoimpwxiwhdg';                           // SMTP password
+                      $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                      $mail->Port = 587; 
 
-              <tr>
-              <td>Description</td>
-              <td><input type="text" name="description" placeholder="enseigne international"></td>
-              </tr>
-              <tr>
-              <td></td>
-              <td><input type="submit" name="ajouter" value="ajouter"></td>
-              </tr>
-              </table>
-              </form>
-                     
-        </div>
+            // TCP port to connect to
+                  
+                      //Recipients
+                      $mail->setFrom('stanislas.montceau@esprit.tn', 'Newsletter Anti-gaspinisie');
+                      $mail->addAddress($email, 'User');     // Add a recipient
+                      
+                      
+                      //Content
+                      $mail->isHTML(true);                                  // Set email format to HTML
+                      $mail->Subject = stripslashes($_POST['subject']);
+                      $mail->Body    = stripslashes($_POST['message']);
+                      //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                  
+                      $mail->send();
+                  } catch (Exception $e) {
+                      echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                  }
+              
+         }
+     $display_block = "newsletter sent to: ".mysqli_num_rows($result)." Users<br/>";
+          mysqli_free_result($result);
+          mysqli_close($mysqli);
+     }
+   
+ }
+ ?>
+  <?php echo $display_block; ?>
+      
+
         <!-- /.container-fluid -->
+          <br><br><br>
+          <?php echo '<a href="javascript:window.print()">IMPRIMER CETTE PAGE</a>'; ?>
+          
+          <br><br><br>
+
+<?php
+require ('db.php');
+
+
+ob_start();
+?>
+<?php
+$content= ob_get_clean();
+require('html2pdf/html2pdf.class.php');
+try{
+$pdf=new html2pdf('p','A4','fr','true','UTF-8');
+$pdf->pdf->SetDisplayMode('fullpage');
+
+$pdf->writeHTML($content);
+//$pdf->pdf->IncludeJS('print(true)');
+$pdf->Output('test.pdf');
+}
+catch(HTML2PDF_exception $e)
+{
+  die($e);
+}
+
+?>
+
+
+
+
 
       </div>
       <!-- End of Main Content -->
@@ -446,32 +536,6 @@
 
 </body>
 
+
+
 </html>
-
-
-
-
-<!-- php de la page ajoutRestaurant.php -->
-<?PHP
-include "../entities/restaurant.php";
-include "../core/restaurantC.php";
-
-if (isset($_POST['cin']) and isset($_POST['nom']) and isset($_POST['nom_restaurant']) and isset($_POST['type']) and isset($_POST['description'])){
-$restaurant1=new restaurant($_POST['cin'],$_POST['nom'],$_POST['nom_restaurant'],$_POST['type'],$_POST['description']);
-//Partie2
-/*
-var_dump($restaurant1);
-}
-*/
-//Partie3
-$restaurant1C=new RestaurantC();
-$restaurant1C->ajouterRestaurant($restaurant1);
-header('Location: afficherRestaurant.php');
-
-  
-}else{
-  echo "";
-}
-//*/
-
-?>

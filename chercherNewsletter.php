@@ -1,3 +1,40 @@
+<?php
+try
+{
+ $bdd = new PDO("mysql:host=localhost;dbname=projetweb", "root", "");
+ $bdd ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch(Exception $e)
+{
+  die("Une érreur a été trouvé : " . $e->getMessage());
+}
+$bdd->query("SET NAMES UTF8");
+
+if (isset($_GET["s"]) AND $_GET["s"] == "Rechercher")
+{
+ $_GET["terme"] = htmlspecialchars($_GET["terme"]); //pour sécuriser le formulaire contre les intrusions html
+ $terme = $_GET['terme'];
+ $terme = trim($terme); //pour supprimer les espaces dans la requête de l'internaute
+ $terme = strip_tags($terme); //pour supprimer les balises html dans la requête
+
+ if (isset($terme))
+ {
+  $terme = strtolower($terme);
+  $select_terme = $bdd->prepare("SELECT nombre_mails,mail,type FROM newsletter WHERE mail LIKE ? OR type LIKE ?"); /*si on veut rajouter des attributs à la recherche, ici ils ne cherchera que dans nom et type, si on veut tous, il faut rajouter "WHERE attributs LIKE ? etc*/
+  $select_terme->execute(array("%".$terme."%", "%".$terme."%"));
+ }
+ else
+ {
+  $message = "Vous devez entrer votre requete dans la barre de recherche";
+ }
+}
+?>
+
+
+
+
+
+
 <html>
 <html lang="en">
 
@@ -9,8 +46,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Restaurant</title>
-  <HTML>
+  <title>Les résultats de recherche</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +59,7 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
+  <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
@@ -109,8 +145,8 @@
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item active" href="afficherRestaurant.php">Afficher Restaurant</a>
-            <a class="collapse-item active" href="ajoutRestaurant.php"> Ajouter Restaurant</a>
+            <a class="collapse-item active" href="afficherRestaurant.php">Afficher Restaurants</a>
+            <a class="collapse-item active" href="ajoutRestaurant.php">Ajouter Restaurant</a>
             <a class="collapse-item active" href="afficherNewsletter.php">Afficher Mails </a>
             <a class="collapse-item active" href="envoyerNewsletter.php">Envoyer Newsletter </a>
           </div>
@@ -332,66 +368,98 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        
+          <!-- Affichage resulats -->
+            
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Restaurant</h1>
+           
 
-           <form method="POST" action="ajoutRestaurant.php">       
-              <td>Ajouter Restaurant</td><br>
-              <table>
-	          <tr>
-              <td>CIN</td>
-              <td><input type="number" required name="cin" placeholder="1"></td>
-              </tr>
-              <tr>
-              <td>Nom de l'administrateur</td>
-              <td><input type="text" required name="nom" placeholder="stan"></td>
-              </tr>
-              <tr>
-              <td>Nom du restaurant</td>
-              <td><input type="text" required name="nom_restaurant" placeholder="macdonalds"></td>
 
-              </tr>
-              <tr>
-              <td>Type</td>
-              <td><input type="radio" name="type" value="restaurant" />
-              <label for="q0r1">Restaurant</label></td>
-              <td><input type="radio" name="type" value="fast-food" />
-              <label for="q0r2">Fast-food</label></td>
-              <td><input type="radio" name="type" value="boulangerie" />
-              <label for="q0r3">Boulangerie</label></td>
-              <td><input type="radio" name="type" value="cafe" />
-              <label for="q0r3">Café</label></td> </br>
-              </tr>
+          <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Newsletter</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="search-content">
+                                                  <form action = "chercherNewsletter.php" method = "get" placeholder="votre recherche...">
+                                                      <input type = "search" name = "terme">
+                                                    
+                                                
+                                                 <input  type = "submit" name = "s" value="Rechercher">
+                                                     
+                                                  </form>
 
-               <!-- <tr>
-                <td>
-                <span class="type">Type</span>
-                <input type="radio" name="rep"/>
-                <label for="q0r1">Restaurant</label>
-                <input type="radio" name="rep"/>
-                <label for="q0r2">Fast-food</label>
-                <input type="radio" name="rep"/>
-                <label for="q0r3">Boulangerie</label> </br>
-                </td>
-              </tr>  -->
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            
+                            <thead>
+                              <tr>
+                      <th>Nombre de mails par mois</th>
+                      <th>Mails</th>
+                      <th>Type</th>
+                      <th>supprimer</th>
+                      <th>modifier</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Nombre de mails par mois</th>
+                      <th>Mails</th>
+                      <th>Type</th>
+                      <th>supprimer</th>
+                      <th>modifier</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                             <?php
+              while($terme_trouve = $select_terme->fetch())
+              {
+                  ?>  
+                            <tbody>
+                              <tr>
+                      <td><?PHP echo $terme_trouve['nombre_mails']; ?></td>
+                      <td><?PHP echo $terme_trouve['mail']; ?></td>
+                      <td><?PHP echo $terme_trouve['type']; ?></td>
+                      <td><form method="POST" action="supprimerNewsletter.php">
+                  <input type="submit" name="supprimer" value="supprimer">
+                  <input type="hidden" value="<?PHP echo $terme_trouve['nombre_mails']; ?>" name="nombre_mails">
+                  </form>
+                  </td>
+                  <td><a href="modifierNewsletter.php?cin=<?PHP echo $terme_trouve['nombre_mails']; ?>">
+                  Modifier</a></td>
+                      </tr>
+                          <?PHP
+                        }
+                        ?>
+                            </tbody>
+                           
+                          </table>
+                           <?php 
+                      
+                      $select_terme->closeCursor();
+                       ?>
+                        </div>
+                      </div>
+                    </div>
 
-              <tr>
-              <td>Description</td>
-              <td><input type="text" name="description" placeholder="enseigne international"></td>
-              </tr>
-              <tr>
-              <td></td>
-              <td><input type="submit" name="ajouter" value="ajouter"></td>
-              </tr>
-              </table>
-              </form>
-                     
-        </div>
-        <!-- /.container-fluid -->
+                  </div>
+                  </div>
 
-      </div>
+
+
+
+
+
+
+        
+        
+ <!-- /.container-fluid -->
+          <br><br><br>
+          <?php echo '<a href="javascript:window.print()">IMPRIMER CETTE PAGE</a>'; ?>
+
+
+
+
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -447,31 +515,3 @@
 </body>
 
 </html>
-
-
-
-
-<!-- php de la page ajoutRestaurant.php -->
-<?PHP
-include "../entities/restaurant.php";
-include "../core/restaurantC.php";
-
-if (isset($_POST['cin']) and isset($_POST['nom']) and isset($_POST['nom_restaurant']) and isset($_POST['type']) and isset($_POST['description'])){
-$restaurant1=new restaurant($_POST['cin'],$_POST['nom'],$_POST['nom_restaurant'],$_POST['type'],$_POST['description']);
-//Partie2
-/*
-var_dump($restaurant1);
-}
-*/
-//Partie3
-$restaurant1C=new RestaurantC();
-$restaurant1C->ajouterRestaurant($restaurant1);
-header('Location: afficherRestaurant.php');
-
-  
-}else{
-  echo "";
-}
-//*/
-
-?>
