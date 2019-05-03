@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username']; 
     $password = $_POST['password']; 
     // mysqli_connect() function opens a new connection to the MySQL server. 
-    $conn = mysqli_connect("localhost", "root","", "projetweb"); 
+    $conn = mysqli_connect("localhost", "root", "", "projetweb"); 
     // SQL query to fetch information of registerd users and finds user match. 
     $query = "SELECT username, password from login where username=? AND password=? LIMIT 1"; 
     // To protect MySQL injection for Security purpose 
@@ -20,9 +20,9 @@ if (isset($_POST['submit'])) {
     $stmt->bind_result($username, $password); 
     $stmt->store_result(); 
     if($stmt->fetch()) //fetching the contents of the row { 
-      $_SESSION['user'] = $username; // Initializing Session 
+      $_SESSION['login_user'] = $username; // Initializing Session 
 
-    header("location: accueil.php"); // Redirecting To Profile Page 
+    header("location: ajouterPanier.php"); // Redirecting To Profile Page 
   } 
   
 } 

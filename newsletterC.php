@@ -105,20 +105,6 @@ try{
             die('Erreur: '.$e->getMessage());
         }
 	}
-	public function  getnewsletter()
-	{
-		try{
-			$c = new config();
-			$driver = $c->getConnexion();
-			$stmt = $driver->prepare('SELECT * FROM newsletter ');
-			$stmt->execute();
-			//$produits=$stmt->fetchAll();
-			//var_dump($produits);
-			return $stmt;
-		}catch(PDOException $ex){
-			echo "Erreur: ".$ex->getMessage();
-		}
-	}
 }
 
 ?>

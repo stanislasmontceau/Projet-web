@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="sarra"){
+?>
 
 
 <!DOCTYPE html>
@@ -26,6 +29,8 @@
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="css/creative.min.css" rel="stylesheet">
 
+ 
+  
 </head>
 
 <body id="page-top">
@@ -33,14 +38,14 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Anti-gaspinisie</a>
+      <a class="navbar-brand js-scroll-trigger" href=accueil.php>Anti-gaspinisie</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Notre histoire</a>
+            <a class="nav-link js-scroll-trigger" href="notre histoire.html">Notre histoire</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#services">Professionnels</a>
@@ -55,84 +60,143 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="compte">Connexion</a>
+           <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#logoutModal" >Logout
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i></a>
         </li>
+          </li>
+        </ul>
+      </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
+
+
+
+ <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Appuyez sur "Logout" pour quitter votre session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="logout.php">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
   <!-- Masthead -->
   <header class="masthead">
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">Le site web qui agit contre le gaspillage alimenatire.</h1>
+          <h1 class="text-uppercase text-white font-weight-bold">Votre commande </h1>
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Parce que 1,3 milliard de tonnes d'aliments sont gaspillés par an, 41,2 tonnes jetées chaque seconde et un tiers de la production alimentaire mondiale gaspillées: agissez avec nous.</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Comment ça marche?</a>
+
+
+
+
+<body>
+<form action="ajoutCommande.php" method="POST">
+ <form method="post" class="user">
+
+                    <p>
+                    <label>*ID Client</label>
+                    <div class="form-group">
+                      <input type="number" name="id_client" placeholder="Entrer votre identifiant" class="form-control form-control-user" required="">
+                      <span id='missIDClient'></span>                     
+                    </div></p>
+
+                    <p>
+                    <label>ID Commande </label>
+                    <div class="form-group">
+                      <input type="number" name="id_cmd" placeholder="entrer cmd" class="form-control form-control-user" >
+                    </div></p>
+
+                    <p>
+                    <label>Date</label>
+                    <div class="form-group">
+                      <input type="date" name="date_cmd" placeholder="Entrer la date d'auj" class="form-control form-control-user" >
+                    </div></p>
+
+                    <p>
+                    <label>Prix</label>
+                     <div class="form-group">
+                      <input type="number" name="prix_cmd" placeholder="Entrer prix" class="form-control form-control-user" >
+                    </div></p>
+
+                    
+
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+
+                         <td><input type="submit" name="ajouter" class="btn btn-primary btn-xl js-scroll-trigger" value="Finaliser la commande" id="ajouter"></td>
+
+                         
+                       </div>
+                     </div>
+                   </form>
+                 </form>
+               </body>
+                     
+      
         </div>
       </div>
     </div>
   </header>
+
+<script>
+            var formValid = document.getElementById('ajouter');
+            var pseudo = document.getElementById('pseudo');
+            var sujet = document.getElementById('sujet');
+            var description = document.getElementById('description');
+            var missPrenom = document.getElementById('missPrenom');
+            
+            formValid.addEventListener('click', validation);
+            
+            function validation(event){
+                //Si le champ est vide
+                if (((prenom.validity.valueMissing)&&(prenom.validity.valueMissing)&&(prenom.validity.valueMissing))){
+                    event.preventDefault();
+                }
+            }
+        </script>
+
+
 
   <!-- About Section -->
   <section class="page-section bg-primary" id="about">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
-          <h2 class="text-white mt-0">Choisissez, allez chercher, déguster!</h2>
+          <h2 class="text-white mt-0">Etudiants</h2>
           <hr class="divider light my-4">
           <p class="text-white-50 mb-4">Choisissez votre restaurant, commandez votre plat, allez le chercher et déguster!</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="produitImaginaire.php">Get Started!</a>
-  <a class="btn btn-light btn-xl" href="notre histoire.html">Notre histoire</a>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">En apprendre plus</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section class="page-section" id="services">
-    <div class="container">
-      <h2 class="text-center mt-0">A votre service !</h2>
-      <hr class="divider my-4">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Sturdy Themes</h3>
-            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Up to Date</h3>
-            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Ready to Publish</h3>
-            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Made with Love</h3>
-            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Portfolio Section -->
+   <!-- Portfolio Section -->
   <section id="portfolio">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
@@ -218,7 +282,7 @@
     </div>
   </section>
 
-   <!-- Contact Section -->
+  <!-- Contact Section -->
   <section class="page-section" id="contact">
     <div class="container">
       <div class="row justify-content-center">
@@ -250,61 +314,15 @@
           <div>Forum</div>
         </div>
       </div>
-</body>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </div>
         </div>
       </div>
     </div>
   </section>
-
-
-
-
- <!--Compte Section -->
-  <section class="page-section" id="compte">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center">
-        <h2 class="mt-0">S'abonner à la newsletter</h2>
-<link type="text/css" rel="stylesheet" href="style.css">
-
-<br><br>
-
-
-<form method="POST" action="afficherMerci.php"> 
-<table>
-<!--<caption>Ajouter Newsletter</caption>  -->
-<tr>
-<td>Nombre de mails par mois</td>
-<td><input type="number" name="nombre_mails"></td>
-</tr>
-<tr>
-<td>Mail</td>
-<td><input type="text" name="mail"></td>
-</tr>
-<tr>
-<td>Type</td>
-<td><input type="radio" name="type" value="nouveaux restaurants" />
-      <label for="q0r1">nouveaux restaurants</label></td>
-    <td><input type="radio" name="type" value="lien vers des articles" />
-        <label for="q0r2">lien vers des articles</label></td>
-    <td><input type="radio" name="type" value="les deux" />
-        <label for="q0r3">les deux</label></td>
-</tr>
-<tr>
-<tr>
-<td></td>
-<td><input type="submit" class="btn btn-primary btn-xl js-scroll-trigger" name="ajouter" value="s'abonner"></td>
-</tr>
-</table>
-</form>
-
-<br>
-<br>
-<br>
-
-
-</body>
 
   <!-- Footer -->
   <footer class="bg-light py-5">
@@ -326,11 +344,31 @@
 
 </body>
 
-
-
+<?php
+}
+else{
+    header("location: login.php"); 
+}
+?>
 
 
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
