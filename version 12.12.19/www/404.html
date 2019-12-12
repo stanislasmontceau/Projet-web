@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-control" content="private" />
+<title>Page introuvable</title>
+
+<style>
+
+@media only screen and (max-width: 700px) {
+  html, body {
+    flex-direction: column;
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
+  }
+
+}
+
+@media only screen and (min-width: 701px) {
+  html, body {
+    flex-direction: row;
+  }
+
+  img {
+    height: 300px;
+    width: 300px;
+    margin-right: 50px;
+  }
+
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+
+  font-family: 'Oswald', sans-serif;
+  background-color: #f2f2f2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Taille, couleur, police et positionnement du bouton "Envoyer" */
+input {
+  height: 50px;
+  width: 200px;
+  border: 1px solid #333333;
+  border-radius: 50px;
+  background-color: #f1f1f1;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+}
+
+input:hover {
+  background-color: #5d5fc6;
+  color: white;
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+img:hover {
+  transform: rotate(1turn);
+  transition: all 0.7s ease;
+}
+
+#txt {
+  text-align: center;
+}
+
+h1 {
+  font-size: 55px;
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="img">
+    <img src="https://i.imgur.com/6CFLqM7.png">
+  </div>
+  <div id="txt">
+    <h1>Cette page n'existe pas.</h1>
+    <input type="submit" onclick="history.go(-1)" value="Revenir en arrière"></input>
+  </div>
+
+</body>
+</html>

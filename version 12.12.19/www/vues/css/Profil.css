@@ -1,0 +1,389 @@
+@media only screen and (max-width: 700px) {
+    nav {
+        height: 70px;
+    }
+
+    .videNav {
+        height: 70px;
+    }
+
+    .logoNav img {
+        height: 62px;
+    }
+
+    .contenuNav {
+        display: none;
+    }
+
+    .contenuNavMobile {
+        position: absolute;
+        top: 26%;
+        padding-left: 90px;
+    }
+
+    .contenuNavMobile ion-icon {
+        color: black;
+        font-size: 36px;
+    }
+
+    .contenuNavMobile button {
+        margin: 0;
+    }
+
+    #menuDeroulant {
+        display: none;
+        max-width: 100%;
+        flex-direction: column;
+        margin-top: 70px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #5355ad;
+    }
+
+    #menuDeroulant p {
+        text-align: center;
+        opacity: 1;
+    }
+
+    #menuDeroulant a {
+        display: block;
+        text-decoration: none;
+        color: black;
+        font-size: 5vw;
+    }
+
+    #menuDeroulant a:hover {
+        color: white;
+        transition: all 0.5s ease;
+    }
+
+    #bouton {
+        border: none;
+        background-color: #5d5fc6;
+    }
+
+    .icones ion-icon {
+        font-size: 7vw;
+    }
+
+    .icones {
+        font-size: 3vw;
+        flex-direction: column;
+    }
+
+    #bas h3 {
+        font-size: 6vw;
+    }
+
+    #bas p {
+        font-size: 3vw;
+    }
+
+    #footer {
+        padding-top: 20px;
+        text-align: center;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .txtFooter p {
+        text-align: center;
+    }
+
+    .social ion-icon {
+        font-size: 9vw;
+    }
+}
+
+@media only screen and (min-width: 701px) {
+    nav {
+        height: 90px;
+    }
+
+    .videNav {
+        height: 90px;
+    }
+
+    .logoNav img {
+        height: 80px;
+    }
+
+    .contenuNavMobile {
+        display: none;
+    }
+
+    #menuDeroulant {
+        display: none;
+    }
+
+    #bas {
+        font-size: 2.8vw;
+    }
+
+    #bas p {
+        font-size: 2vw;
+    }
+
+    .txtFooter p {
+        text-align: right;
+    }
+
+    .social ion-icon {
+        font-size: 3vw;
+    }
+}
+
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    background-color: #5D5FC6;
+    width: 100%;
+    z-index: 1;
+}
+
+.videNav {
+    width: 100%;
+}
+
+.contenuNav a {
+    color: white;
+    text-decoration: none;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 22px;
+}
+
+.contenuNav a:hover {
+    color: #1e83cb;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 22px;
+}
+
+.logoNav {
+    position: absolute;
+    left: 1%;
+    top: 7%;
+}
+
+.contenuNav {
+    position: absolute;
+    right: 0;
+    top: 30%;
+}
+
+/*#milieu{
+    background-color: #f2edfc;
+    width: 100%;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 3% 5% 20% 5%;
+    flex : auto;
+    font-size: 1.5vw;
+}
+*/
+
+#milieu {
+    margin-top: -20px;
+    background-color: #f2f2f2;
+    padding: 5% 5% 8% 5%;
+    text-align: center;
+    font-size: 2vw;
+    font-weight: 300;
+    flex : auto;
+    display: inline-block;
+}
+
+.uploadarrow{
+    cursor: pointer;
+}
+
+.uploadarrow:hover{
+    transform: scale(1.25,1.25);
+    transition: transform 0.3s ease;
+}
+
+.avatar{
+    /*margin-left: 100px;*/
+}
+
+.container{
+    display: block;
+    position: absolute;
+    top: 180px;
+    bottom: 180px;
+    left: 400px;
+    right: 400px;
+    margin-top : 1350px;
+    /*border: 2px dashed #bbb;*/
+    border: 2px inset floralwhite;
+    border-width: thick thick thick 5px;
+    border-radius: 25px;
+    padding-top: 85px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    background-color: #e6e6e6;
+}
+
+.uploadarrow{
+    background: center no-repeat;
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    top: 5px;
+}
+
+
+.uploadmessage{
+    display : inline;
+}
+
+#save {
+    margin-left: 25px;
+    padding: 8px;
+    border-radius: 10px;
+    /*border: 1px solid;*/
+    background-color: floralwhite;
+    /*color: #5355ad;*/
+    /*font-size: 1em;*/
+    font-family: 'Oswald', sans-serif;
+    height: 40px;
+    width: 150px;
+}
+
+#save:hover {
+    background-color: #5d5fc6;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Oswald', sans-serif;
+}
+
+.btntop{
+    opacity: 1;
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
+    z-index: 1024;
+    cursor: pointer;
+    transition: opacity .2s ease-out;
+    display: none;
+    transform: scale(1.25,1.25);
+    scroll-behavior: smooth;
+    touch-action: manipulation;
+    box-shadow: inset 0 0px 0px rgba(0,0,0,0.125);
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+    /*padding: .5rem 1rem;
+    font-size: 1.171875rem;
+    line-height: 1.5;
+    border-radius: 0;
+    text-decoration: none;
+    /*text-align: center;*/
+    line-height: 50px;
+    font-size: 22px;
+}
+
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    width: 100%;
+    background-color: #0d0e36;
+}
+
+.social {
+    display: block;
+}
+
+.social ion-icon {
+    color: white;
+    padding-left: 1.5vw;
+}
+
+.txtFooter {
+    display: block;
+    padding-right: 1.5vw;
+}
+
+.txtFooter p {
+    color: white;
+}
+
+.txtFooter a {
+    text-decoration: underline;
+    color: white;
+}
+
+@keyframes appear {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+table {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e6e6e6;
+    /*width: 300px;
+    height: 50px;*/
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border: outset;
+}
+td{
+
+    text-align: right;
+    height: 100px;
+    padding-right: 100px;
+}
+label{
+    font-size: 25px;
+    display:block;
+    float:left;
+    width:150px;
+}
+
+input{float: left;}
+
+/*div {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    display: inline-block;
+    width: 300px;
+}
+
+input:invalid+span:after {
+    content: '✖';
+    padding-left: 5px;
+}
+
+input:valid+span:after {
+    content: '✓';
+    padding-left: 5px;
+}*/

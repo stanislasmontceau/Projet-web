@@ -1,0 +1,159 @@
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfiniteMeasures</title>
+    <link rel="stylesheet" href="css/nav2.css">
+    <link rel="stylesheet" href="css/Profil.css">
+    <link rel="stylesheet" href="css/menuGauche.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="script.js"></script>
+    <script src="Profil.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logoNav">
+            <a href="http://infinitemeasures.fr">
+                <img src="logo.png"></img>
+            </a>
+        </div>
+        <div class="contenuNav">
+            <a href="index.php">Accueil</a>
+            <a href="connexion.php">Connexion</a>
+            <a href="faq.php">FAQ</a>
+            <a href="contact.php">Contact</a>
+        </div>
+        <div class="contenuNavMobile"> <!-- Bouton version mobile -->
+            <button id="bouton" onclick="menu()">
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </div>
+        <div id="menuDeroulant"> <!-- Menu version mobile -->
+            <p>
+                <a href="index.php">Accueil</a>
+                <a href="connexion.php">Connexion</a>
+                <a href="faq.php">FAQ</a>
+                <a href="contact.php">Contact</a>
+            </p>
+        </div>
+    </nav>
+    <div class="videNav"></div>
+    <div id="milieu" align="center">
+        <br/>
+        <h1>Editer le profil</h1>
+        <div align="center">
+            <a><img src = "img/LogoP.png" width="120" height="120" ></img></a>
+            <br/><br/>
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="general" align="left">
+                    <h2>Général</h2>
+                </div>
+                <table>
+                    <tr>
+                        <td align="left">
+                            <label>Nom</label>
+                        </td>
+                        <td>
+                            <input type="text" name="newlastname" style=" height: 45px; background-color: #f2f2f2; border: outset; border-radius: 50px;" placeholder="Nom" value="" size="30" maxlength="100" autocomplete="given-name"/><br /><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <label>Prénom</label>
+                        </td>
+                        <td>
+                            <input type="text" name="newfirstname" style=" height: 45px; background-color: #f2f2f2; border: outset; border-radius: 50px;" placeholder="Prénom" value="" size="30" maxlength="100"/><br /><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <label>Adresse e-mail</label>
+                        </td>
+                        <td>
+                            <input type="text" name="newmail" style=" height: 45px; background-color: #f2f2f2; border: outset; border-radius: 50px;" placeholder="Adresse e-mail" value="" size="30" maxlength="100" /><br /><br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <label>Date de naissance</label>
+                        </td>
+                        <td>
+                            <input type="date" name="newdob" style=" height: 45px; background-color: #f2f2f2; border: outset; border-radius: 50px; width: 230px" placeholder="Date de naissance" value="" size="30" maxlength="100"/><br /><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <label>Entreprise</label>
+                        </td>
+                        <td>
+                            <input type="text" name="newentreprise" style=" height: 45px; background-color: #f2f2f2; border: outset; border-radius: 50px;" placeholder="Entreprise" value="" size="30" maxlength="100"/><br /><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <label>Mot de passe</label>
+                        </td>
+                        <td>
+                            <input type="password" name="newmdp1" style=" height: 45px; background-color: #f2f2f2; border: outset; border-radius: 50px;" placeholder="Mot de passe" size="30" maxlength="100"/><br /><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <label>Confirmation du mot de passe</label>
+                        </td>
+                        <td>
+                            <input type="password" name="newmdp2" style=" height: 45px; background-color: #f2f2f2; border: outset; border-radius: 50px;" placeholder="Confirmation du mot de passe" size="30" maxlength="100"/><br /><br />
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <input type="submit" name = "save" id = "save" style = "float: none;" value="Enregistrer le profil" />
+            </form>
+            <?php if(isset($msg)) { echo $msg; } ?>
+        </div>
+        <br /><br />
+        <div class="avatar" align="left">
+            <h2>Avatar Utilisateur</h2>
+            <div class = "container">
+                <br />
+                <input type = "file" name = "avatar" style = "float: none;" size="30" maxlength="100" />
+                <div class = "uploadmessage">
+                    <p>Vous pouvez choisir votre avatar pour l'ajouter ici.</p><br/>
+                    <div class = "uploadarrow">
+                        <a><img src = "img/Arrow-down.png" width="70" height="70"></img></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br /><br /><br/>
+
+
+    </div>
+
+    <a id="backtotop" class = "btntop" role="button" href="#" accesskey="t" title="BtnTop">
+        <i><img src = "img/arrowtop.png" width="40" height="40"></img>
+        </i>
+    </a>
+
+
+    <footer id="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/InfiniteMeasuresFr" target = "_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="https://www.instagram.com/infinite_measures/" target = "_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://mailto.infinitemeasuresfr@gmail.com" target = "_blank"><ion-icon name="mail"></ion-icon></a>
+        </div>
+        <div class="txtFooter">
+            <p>
+                © Infinite Measures, 2019 <br>
+                <a href="cgu.html">CGU</a> -
+                <a href="mentions.html">Mentions légales</a>
+            </p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+</body>
+</html>
