@@ -1,0 +1,95 @@
+@media only screen and (max-width: 700px) {
+  #milieu {
+    margin-top: 90px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+  }
+
+  .boutonBas {
+    display: none;
+  }
+
+  #bouton {
+    border: none;
+    background-color: #5d5fc6;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+  #milieu {
+    margin: 110px 50px 50px 350px;
+  }
+}
+
+.contenu {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #e5e5e5;
+}
+
+#milieu {
+  flex: auto;
+}
+
+.tableau {
+  margin-top: 15px;
+}
+
+.tableau thead th {
+  background: #333;
+  height: 50px;
+  min-width: 90px;
+  font-weight: 300;
+  color: white;
+}
+
+.tableau thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.tableau thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.tableau tr td {
+  height: 40px;
+  text-align: center;
+}
+
+.tableau tbody tr:nth-child(odd) td {
+  background-color: #ffffff;
+}
+
+.tableau tbody tr:nth-child(even) td {
+  background-color: #f5f5f5;
+}
+
+.tableau tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.tableau tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+@keyframes appear {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}

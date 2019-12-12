@@ -1,0 +1,318 @@
+@media only screen and (max-width: 700px) {
+  nav {
+    height: 70px;
+  }
+
+  .videNav {
+    height: 70px;
+  }
+
+  .contenuNavDroite {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+  }
+
+  .contenuNavDroite p {
+    display: none;
+  }
+
+  #menuUtilisateur {
+    top: 70px;
+    right: 0;
+  }
+
+  #menuGauche {
+    visibility: hidden;
+    width: 200px;
+  }
+
+  .logoGauche {
+    display: none;
+  }
+
+  #boutonMenuGauche {
+    position: absolute;
+    top: 26%;
+    left: 3%;
+  }
+
+  #boutonMenuGauche ion-icon {
+    color: black;
+    font-size: 36px;
+  }
+
+  #boutonMenuGauche {
+    border: none;
+    background-color: #5d5fc6;
+  }
+
+  #milieu {
+    margin-top: 90px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .boutonBas {
+    display: none;
+  }
+
+  #bouton {
+    border: none;
+    background-color: #5d5fc6;
+  }
+
+  #footer {
+    padding-top: 20px;
+    text-align: center;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .txtFooter p {
+    text-align: center;
+  }
+
+  .social ion-icon {
+    font-size: 9vw;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+  nav {
+    height: 90px;
+  }
+
+  .videNav {
+    height: 90px;
+  }
+
+  .contenuNavDroite {
+    top: 9px;
+    right: 20px;
+  }
+
+  .contenuNavDroite img {
+    margin-right: 15px;
+  }
+
+  #menuUtilisateur {
+    top: 90px;
+    right: 25px;
+    box-shadow: 0 5px 10px 0 #e7e7e7;
+  }
+
+  #boutonMenuGauche {
+    visibility: hidden;
+  }
+
+  #menuGauche {
+    visibility: visible;
+    width: 300px;
+  }
+
+  #milieu {
+    margin: 110px 50px 50px 350px;
+  }
+
+  .txtFooter p {
+    text-align: right;
+  }
+
+  .social ion-icon {
+    font-size: 3vw;
+  }
+}
+
+.contenu {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #e5e5e5;
+}
+
+nav {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  background-color: #5D5FC6;
+}
+
+.contenuNavDroite {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+}
+
+.contenuNavDroite p {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.contenuNavDroite ion-icon {
+  font-size: 30px;
+}
+
+.contenuNavDroite img {
+  height: 55px;
+  border-radius: 50%;
+}
+
+#boutonUtilisateur {
+  width: 35px;
+  border: none;
+  background-color: #5D5FC6;
+  color: white;
+}
+
+#menuUtilisateur {
+  visibility: hidden;
+  width: 200px;
+  height: 150px;
+  position: absolute;
+  background-color: white;
+}
+
+#menuUtilisateur a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+#menuUtilisateur a:hover {
+  color: #559e83;
+}
+
+.objMenuUtilisateur {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.objMenuUtilisateur ion-icon {
+  margin-left: 30px;
+  margin-right: 15px;
+}
+
+.videNav {
+  /* height en haut */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  pointer-events: none; /* pour pouvoir cliquer sur le bouton menu */
+}
+
+#menuGauche {
+  position: fixed;
+  height: 100%;
+  background-color: #2a3f54;
+}
+
+.logoGauche {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 90px;
+  text-align: center;
+  background-color: #5d5fc6;
+  box-shadow: 0.5px 0px 2px #4b4da3;
+  border-right: 1px solid #4b4da3;
+}
+
+.logoGauche h2 {
+  font-size: 30px;
+  font-weight: 200;
+  color: white;
+}
+
+.contenuGauche {
+  width: 300px;
+  margin-top: 150px;
+  margin-left: 30px;
+}
+
+.objGauche {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 40px;
+}
+
+.objGauche a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.objGauche a:hover {
+  color: #559e83;
+}
+
+.objGauche ion-icon {
+  font-size: 20px;
+  color: white;
+  margin-right: 20px;
+}
+
+#milieu {
+  flex: auto;
+}
+
+#footer {
+  display: flex;
+  z-index: 1;
+  align-items: center;
+  justify-content:space-between;
+  width: 100%;
+  background-color: #0d0e36;
+}
+
+.social {
+  display: block;
+}
+
+.social ion-icon {
+  color: white;
+  padding-left: 1.5vw;
+}
+
+.txtFooter {
+  display: block;
+  padding-right: 1.5vw;
+}
+
+.txtFooter p {
+  font-weight: 400;
+  color: white;
+}
+
+.txtFooter a {
+  text-decoration: underline;
+  color: white;
+}
+
+@keyframes appear {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
