@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="css/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
+  
 <body>
+  
     <?php include('nav.php'); ?>
     <div class="videNav"></div>
 
@@ -39,4 +41,5 @@
   <script src="js/script.js"></script>
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
+  
 </html>
