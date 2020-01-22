@@ -1,4 +1,4 @@
-function menu() {
+ function menu() {
   var x = document.getElementById("menuDeroulant");
   if (x.style.visibility === "visible") {
     x.style.visibility = "hidden";
@@ -23,4 +23,14 @@ function menuGauche() {
   } else {
     x.style.visibility = "visible";
   }
+}
+
+function popup() {
+  var x = document.getElementById("popup");
+  x.style.display = "block";
+}
+
+function fermerPopup() {
+  var x = document.getElementById("popup");
+  x.style.display = "none";
 }
