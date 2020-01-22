@@ -1,9 +1,13 @@
 <?PHP
 session_start();
+include "../../modeles/questions.php";
 
 if(!isset($_SESSION['idUtilisateur']) OR $_SESSION['type'] != "admin") {
   header('Location: connexion.php');
 }
+
+$questions=afficherQuestionsPosees();
+$questions2=afficherQuestionsPosees();
 ?>
 
 <!doctype html>
@@ -15,21 +19,13 @@ if(!isset($_SESSION['idUtilisateur']) OR $_SESSION['type'] != "admin") {
   <meta http-equiv="Cache-control" content="private" />
   <title>InfiniteMeasures</title>
   <link rel="stylesheet" href="../css/nav2.css">
-  <link rel="stylesheet" href="../css/bienvenue.css">
-  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/donnees.css">
   <link rel="stylesheet" href="../css/menuGauche.css">
   <link rel="stylesheet" href="../css/footer.css">
-
   <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
-
-  <?php
-  if($_SESSION['bienvenue']) {
-    include('bienvenue.php');
-    $_SESSION['bienvenue'] = false;
-  }
-  ?>
 
   <!-- barre de navigation -->
 
@@ -37,16 +33,42 @@ if(!isset($_SESSION['idUtilisateur']) OR $_SESSION['type'] != "admin") {
   <div class="videNav"></div>
 
   <div class="contenu">
-
 	<?php include('menuAdmin.php'); ?>
 
     <!-- contenu -->
 
     <div id="milieu">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
+      <h2>Questions posées</h2>
+
+      <div id="tableauMobile">
+        <?PHP foreach ($questions2 as $question2) { ?>
+        <div class="cellule">
+          <p class="titre">ID QUESTION</p>
+          <p class="valeur"><?PHP echo htmlspecialchars($question2['idQuestionPosee']); ?></p>
+
+          <p class="titre">QUESTION POSÉE</p>
+          <p class="valeur"><?PHP echo htmlspecialchars($question2['questionPosee']); ?></p>
+        </div>
+        <?PHP } ?>
+      </div>
+
+      <table class="tableau" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID Question</th>
+            <th>Question posée</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?PHP foreach($questions as $question){ ?>
+            <tr>
+              <td><?PHP echo htmlspecialchars($question['idQuestionPosee']); ?></td>
+              <td><?PHP echo htmlspecialchars($question['questionPosee']); ?></td>
+            </tr>
+            <?PHP } ?>
+          </tbody>
+        </table>
+      </div>
 
   </div>
 
@@ -54,7 +76,7 @@ if(!isset($_SESSION['idUtilisateur']) OR $_SESSION['type'] != "admin") {
 
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <script src="../js/base.js"></script>
+  <script src="../js/popup.js"></script>
 </body>
 </html>

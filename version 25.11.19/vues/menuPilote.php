@@ -1,19 +1,19 @@
-<div id="menuGauche">
+<div id="menuGauche" class="cacherMenuGauche">
       <div class="contenuGauche">
         <div class="objGauche">
-          <ion-icon name="home"></ion-icon><a href="#">Accueil</a>
+          <ion-icon name="home"></ion-icon><a href="donnees.php">Accueil</a>
         </div>
         <div class="objGauche">
-          <ion-icon name="stats"></ion-icon><a href="#">Graphiques</a>
+          <ion-icon name="stats"></ion-icon><a href="graphiques.php">Graphiques</a>
         </div>
         <div class="objGauche">
-          <ion-icon name="filing"></ion-icon><a href="#">Tableaux</a>
+          <ion-icon name="filing"></ion-icon><a href="historique.php">Historique</a>
         </div>
         <div class="objGauche">
-          <ion-icon name="ribbon"></ion-icon><a href="#">Classements</a>
+          <ion-icon name="ribbon"></ion-icon><a href="classements.php">Classements</a>
         </div>
         <div class="objGauche">
-          <ion-icon name="help-buoy"></ion-icon><a href="#">Aide</a>
+          <ion-icon name="chatboxes"></ion-icon><a href="questionPilote.php">Poser une question</a>
         </div>
       </div>
     </div>

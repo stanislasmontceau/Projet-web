@@ -15,39 +15,36 @@ if(!isset($_SESSION['idUtilisateur']) OR $_SESSION['type'] != "gestionnaire") {
   <meta http-equiv="Cache-control" content="private" />
   <title>InfiniteMeasures</title>
   <link rel="stylesheet" href="../css/nav2.css">
-  <link rel="stylesheet" href="../css/recherche.css">
+  <link rel="stylesheet" href="../css/bienvenue.css">
+  <link rel="stylesheet" href="../css/gestionnaire.css">
   <link rel="stylesheet" href="../css/menuGauche.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <?php
+  if($_SESSION['bienvenue']) {
+    include('bienvenue.php');
+    $_SESSION['bienvenue'] = false;
+  }
+  ?>
+
   <!-- barre de navigation -->
 
   <?php include('nav2.php'); ?>
   <div class="videNav"></div>
+
+  <!-- gauche -->
 
   <div class="contenu">
     <?php include('menuGestionnaire.php'); ?>
 
     <!-- contenu -->
 
-      <div id="milieu">
-        <div class="recherche">
-        <div class="txtMilieu">
-          <h1>Recherche</h1>
-        </div>
-          <form method="post" action="resultatsRecherche.php">
-            <div class="formulaire">
-              <ion-icon name="person"></ion-icon>
-              <input type="text" name="nom" placeholder="Nom du pilote"><br>
-            </div>
-            <div class="envoyer">
-              <input type="submit" value="Rechercher">
-            </div>
-          </form>
-        </div>
-      </div>
+    <div id="milieu">
+      <p><!--infinitemeasuresfr.fonction@gmail.com--></p>
+    </div>
 
   </div>
 

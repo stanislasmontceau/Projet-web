@@ -2,38 +2,29 @@
 session_start();
 include "../../modeles/donneesTest.php";
 
-
 if(!isset($_SESSION['idUtilisateur']) OR $_SESSION['type'] != "pilote") {
   header('Location: connexion.php');
 }
 
-$listeDonnees=recupererDernieresDonnees($_SESSION['idUtilisateur']);
-$listeDonnees2=recupererDernieresDonnees($_SESSION['idUtilisateur']);
+$listeDonnees=recupererDonnees($_SESSION['idUtilisateur']);
+$listeDonnees2=recupererDonnees($_SESSION['idUtilisateur']);
 ?>
 
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi">
   <meta http-equiv="Cache-control" content="private" />
   <title>InfiniteMeasures</title>
   <link rel="stylesheet" href="../css/nav2.css">
-  <link rel="stylesheet" href="../css/bienvenue.css">
   <link rel="stylesheet" href="../css/donnees.css">
   <link rel="stylesheet" href="../css/menuGauche.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <?php
-  if($_SESSION['bienvenue']) {
-    include('bienvenue.php');
-    $_SESSION['bienvenue'] = false;
-  }
-  ?>
 
   <!-- barre de navigation -->
 
@@ -47,7 +38,7 @@ $listeDonnees2=recupererDernieresDonnees($_SESSION['idUtilisateur']);
     <!-- contenu -->
 
     <div id="milieu">
-      <h2>Vos données récentes</h2>
+      <h2>Toutes vos données</h2>
 
       <div id="tableauMobile">
         <?PHP foreach ($listeDonnees2 as $row) { ?>
