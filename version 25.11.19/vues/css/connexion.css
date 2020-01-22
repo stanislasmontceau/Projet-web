@@ -1,72 +1,4 @@
 @media only screen and (max-width: 700px) {
-  nav {
-    height: 70px;
-  }
-
-  .videNav {
-    height: 70px;
-  }
-
-  .logoNav {
-    position: absolute;
-    right: 2%;
-    top: 7%;
-    /* Pour mettre le logo au centre
-    left: 50%;
-    transform: translate(-50%, 0%);
-    */
-  }
-
-  .logoNav img {
-    height: 62px;
-  }
-
-  .contenuNav {
-    display: none;
-  }
-
-  .contenuNavMobile {
-    position: absolute;
-    top: 26%;
-    left: 3%;
-  }
-
-  .contenuNavMobile ion-icon {
-    color: black;
-    font-size: 36px;
-  }
-
-  .contenuNavMobile button {
-    margin: 0;
-  }
-
-  #menuDeroulant {
-    visibility: hidden;
-    max-width: 100%;
-    /*flex-direction: column;*/
-    margin-top: 70px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #5355ad;
-  }
-
-  #menuDeroulant p {
-    text-align: center;
-    opacity: 1;
-  }
-
-  #menuDeroulant a {
-    display: block;
-    text-decoration: none;
-    color: black;
-    font-size: 5vw;
-  }
-
-  #menuDeroulant a:hover {
-    color: white;
-    transition: all 0.5s ease;
-  }
-
   #bouton {
     border: none;
     background-color: #5d5fc6;
@@ -78,24 +10,13 @@
     margin-bottom: 20px;
   }
 
+  .message {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
   .txtMilieu ion-icon {
     font-size: 60px;
-    margin-bottom: 70px
-  }
-
-  #footer {
-    padding-top: 20px;
-    text-align: center;
-    flex-direction: column;
-    margin-bottom: 0;
-  }
-
-  .txtFooter p {
-    text-align: center;
-  }
-
-  .social ion-icon {
-    font-size: 9vw;
   }
 }
 
@@ -104,32 +25,6 @@
 **/
 
 @media only screen and (min-width: 701px) {
-  nav {
-    height: 90px;
-  }
-
-  .videNav {
-    height: 90px;
-  }
-
-  .logoNav {
-    position: absolute;
-    left: 1%;
-    top: 7%;
-  }
-
-  .logoNav img {
-    height: 80px;
-  }
-
-  .contenuNavMobile {
-    display: none;
-  }
-
-  #menuDeroulant {
-    display: none;
-  }
-
   #milieu h1 {
     font-size: 50px;
     margin-top: 50px;
@@ -138,15 +33,6 @@
 
   .txtMilieu ion-icon {
     font-size: 80px;
-    margin-bottom: 70px
-  }
-
-  .txtFooter p {
-    text-align: right;
-  }
-
-  .social ion-icon {
-    font-size: 3vw;
   }
 }
 
@@ -167,33 +53,6 @@ body {
   flex-direction: column;
 }
 
-nav {
-  position: fixed;
-  top: 0;
-  background-color: #5D5FC6;
-  width: 100%;
-  z-index: 1;
-}
-
-.videNav {
-  /* height en haut */
-  width: 100%;
-}
-
-.contenuNav a {
-  color: white;
-  text-decoration: none;
-  padding-left: 40px;
-  padding-right: 40px;
-  font-size: 22px;
-}
-
-.contenuNav {
-  position: absolute;
-  right: 0;
-  top: 30%;
-}
-
 #milieu {
   /*background: linear-gradient(#5D5FC6, #0d0e36);*/
   background-color: #f2f2f2;
@@ -209,6 +68,19 @@ nav {
 .txtMilieu {
   animation-name: appear;
   animation-duration: 1s;
+}
+
+.message {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.inscription {
+  color: #559e83;
+}
+
+.invalide {
+  color: #c95757;
 }
 
 /* Couleur et alignement du div contenant un formulaire */
@@ -268,37 +140,6 @@ nav {
 ::placeholder {
   font-family: 'Oswald', sans-serif;
   text-align: left;
-}
-
-#footer {
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
-  width: 100%;
-  background-color: #0d0e36;
-}
-
-.social {
-  display: block;
-}
-
-.social ion-icon {
-  color: white;
-  padding-left: 1.5vw;
-}
-
-.txtFooter {
-  display: block;
-  padding-right: 1.5vw;
-}
-
-.txtFooter p {
-  color: white;
-}
-
-.txtFooter a {
-  text-decoration: underline;
-  color: white;
 }
 
 @keyframes appear {

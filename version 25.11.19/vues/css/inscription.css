@@ -1,16 +1,12 @@
 @media only screen and (max-width: 700px) {
-  .contenu {
-    height: 100%;
-  }
-  
-  #milieu {
-    margin-top: 90px;
-    margin-bottom: 20px;
+  #bouton {
+    border: none;
+    background-color: #5d5fc6;
   }
 
   #milieu h1 {
-    font-size: 35px;
-    margin-top: 20px;
+    font-size: 40px;
+    margin-top: 100px;
     margin-bottom: 20px;
   }
 
@@ -18,24 +14,11 @@
     font-size: 60px;
     margin-bottom: 70px
   }
-
-  .formulaire {
-    width: 250px;
-  }
-
-  .formulaire input {
-    width: 170px;
-  }
-
-  .boutonBas {
-    display: none;
-  }
-
-  #bouton {
-    border: none;
-    background-color: #5d5fc6;
-  }
 }
+
+/**
+------------------------------------------
+**/
 
 @media only screen and (min-width: 701px) {
   .contenu {
@@ -43,14 +26,10 @@
     flex-direction: row;
     flex: auto;
   }
-
-  #milieu {
-    margin: 110px 50px 50px 350px;
-  }
-
+  
   #milieu h1 {
     font-size: 50px;
-    margin-top: 50px;
+    margin-top: 140px;
     margin-bottom: 20px;
   }
 
@@ -58,32 +37,34 @@
     font-size: 80px;
     margin-bottom: 70px
   }
-
-  .formulaire {
-    width: 320px;
-  }
-
-  .formulaire input {
-    width: 220px;
-  }
 }
+
+/**
+------------------------------------------
+**/
 
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
   font-family: 'Oswald', sans-serif;
-  font-weight: 300;
   scroll-behavior: smooth;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  background-color: #e5e5e5;
+}
+
+.videNav {
+  width: 100%;
+  height: 70px;
 }
 
 #milieu {
+  /*background: linear-gradient(#5D5FC6, #0d0e36);*/
+  background-color: #f2f2f2;
+  text-align: center;
   flex: auto;
 }
 
@@ -92,16 +73,9 @@ body {
   color: black;
 }
 
-.recherche {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .txtMilieu {
   animation-name: appear;
   animation-duration: 1s;
-  margin-bottom: 30px;
 }
 
 /* Couleur et alignement du div contenant un formulaire */
@@ -111,17 +85,20 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  background-color: #f1f1f1;
+  background-color: #e6e6e6;
+  width: 300px;
   height: 50px;
   border-radius: 50px;
+  margin: 0 auto; /* sert à centrer verticalement les formulaires */
   margin-bottom: 30px;
 }
 
 /* Taille et couleur des zones de texte uniquement */
 .formulaire input {
   height: 40px;
+  width: 220px;
   border: none;
-  background-color: #f1f1f1;
+  background-color: #e6e6e6;
 }
 
 /* Effet s'appliquant au div .formulaire lorsqu'on clique dans les zones de texte */
@@ -137,8 +114,7 @@ body {
 }
 
 .envoyer {
-  display: flex;
-  justify-content: center;
+  margin-bottom: 50px;
 }
 
 /* Taille, couleur, police et positionnement du bouton "Envoyer" */
@@ -147,7 +123,7 @@ body {
   width: 150px;
   border: none;
   border-radius: 50px;
-  background-color: #f1f1f1;
+  background-color: #e6e6e6;
   font-family: 'Oswald', sans-serif;
 }
 

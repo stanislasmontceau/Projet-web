@@ -1,18 +1,18 @@
-@media only screen and (max-width: 830px) {
+@media only screen and (max-width: 700px) {
   #milieu {
     margin-top: 90px;
     margin-bottom: 20px;
   }
 
-  #milieu button {
-    height: 32px;
-    width: 32px;
-    margin: 0 10px 20px 0;
-  }
-
   #milieu img {
     height: 32px;
     width: 32px;
+  }
+
+  #tableauMobile button {
+    height: 32px;
+    width: 32px;
+    margin: 0 10px 20px 0;
   }
 
   .tableau {
@@ -24,7 +24,7 @@
   }
 }
 
-@media only screen and (min-width: 831px) and (max-width: 1175px) {
+@media only screen and (min-width: 701px) and (max-width: 1175px) {
   .contenu {
     display: flex;
     flex-direction: row;
@@ -36,6 +36,15 @@
     margin-bottom: 20px;
   }
 
+  #tableauMobile button {
+    height: 24px;
+  }
+
+  #milieu img {
+    height: 24px;
+    width: 24px;
+  }
+
   .boutonBas {
     display: none;
   }
@@ -43,15 +52,6 @@
   #bouton {
     border: none;
     background-color: #5d5fc6;
-  }
-
-  #milieu button {
-    height: 24px;
-  }
-
-  #milieu img {
-    height: 24px;
-    width: 24px;
   }
 
   #tableauMobile {
@@ -70,11 +70,11 @@
     margin: 110px 50px 50px 350px;
   }
 
-  #milieu button {
+  #tableauMobile button {
     height: 24px;
   }
 
-  #milieu img {
+  .tableau img {
     height: 24px;
     width: 24px;
   }
@@ -104,6 +104,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#milieu button {
+  padding: 0;
+  border: none;
+  border-radius: 100px;
+  background: none;
+  cursor: pointer;
 }
 
 h2 {
@@ -148,25 +156,19 @@ h2 {
 }
 
 .tableau tr td {
-  height: 40px;
+  height: 80px;
   text-align: center;
 }
 
-#milieu img {
+.tableau img {
+  height: 24px;
+  width: 24px;
   vertical-align: bottom;
 }
 
-#milieu img:hover {
+.tableau img:hover {
   transform: scale(1.1,1.1);
   transition: transform 0.3s ease;
-}
-
-#milieu button {
-  padding: 0;
-  border: none;
-  border-radius: 100px;
-  background: none;
-  cursor: pointer;
 }
 
 #tableauMobile {
@@ -181,10 +183,10 @@ h2 {
 
 .cellule {
   padding-top: 15px;
+  padding-right: 30px;
   padding-left: 30px;
   text-align: left;
   border-bottom: 1px solid #f2f2f2;
-
 }
 
 .titre {
@@ -194,7 +196,37 @@ h2 {
 }
 
 .valeur {
+  text-align: justify;
   font-size: 20px;
+}
+
+.tableau button {
+  height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btnAjouter img {
+  margin-top: 15px;
+  height: 48px;
+  width: 48px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btnAjouter img:hover {
+  transform: scale(1.25,1.25);
+  transition: transform 0.3s ease;
+}
+
+.btnAjouter button {
+  margin-top: 15px;
+  height: 48px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 @keyframes appear {

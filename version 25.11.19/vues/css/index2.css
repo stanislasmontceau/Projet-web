@@ -25,11 +25,26 @@
     font-size: 6vw;
   }
 
+  #milieuImg {
+    flex-direction: column;
+    padding: 5% 5% 10% 5%;
+    flex-shrink: 0;
+  }
+
+  #milieuImg img {
+    padding: 10% 0 10% 0;
+    height: 32vw;
+  }
+
+  .texteDroite {
+    font-size: 5vw;
+  }
+
   #milieu {
     padding: 5% 5% 10% 5%;
     flex-shrink: 0;
   }
-0
+
   .icones ion-icon {
     font-size: 12vw;
   }
@@ -40,16 +55,26 @@
   }
 
   #bas {
-    padding: 5% 5% 20% 5%;
+    flex-direction: column;
     flex-shrink: 0;
+    padding: 13% 8% 13% 8%;
   }
 
-  #bas h3 {
-    font-size: 9vw;
+  #bas img {
+    height: 48vw;
+    margin-right: 10vw;
   }
 
   #bas p {
     font-size: 5vw;
+  }
+
+  .texteGauche {
+    padding-top: 70%;
+  }
+
+  .imgSlideRight2 {
+    margin-left: 2vw;
   }
 
   #contact {
@@ -88,7 +113,22 @@
     font-size: 3vw;
   }
 
+  #milieuImg {
+    flex-direction: row;
+    padding: 5% 5% 8% 5%;
+  }
+
+  #milieuImg img {
+    height: 17vw;
+    padding-right: 50px;
+  }
+
+  .texteDroite {
+    font-size: 2vw;
+  }
+
   #milieu {
+    padding: 5% 5% 8% 5%;
     font-size: 2vw;
   }
 
@@ -97,12 +137,20 @@
   }
 
   #bas {
-    font-size: 2.8vw;
-    padding: 3% 5% 10% 5%;
+    flex-direction: row;
+    padding: 5% 48% 8% 8%;
+  }
+
+  #bas img {
+    height: 26vw;
   }
 
   #bas p {
     font-size: 2vw;
+  }
+
+  .texteGauche {
+    margin-right: 40px;
   }
 
   #contact {
@@ -173,9 +221,26 @@ body {
   transition: transform 1s ease;
 }
 
+#milieuImg {
+  display: flex;
+  align-items: center;
+  background-color: #f2edfc;
+  text-align: center;
+  font-weight: 300;
+}
+
+#milieuImg img {
+  position: relative;
+  left: -1000px;
+}
+
+#milieuImg img:hover {
+  transition: all ease 0.3s;
+  transform: scale(1.05);
+}
+
 #milieu {
   background-color: #CCC6DA;
-  padding: 5% 5% 8% 5%;
   text-align: center;
   font-weight: 300;
   display: inline-block;
@@ -190,7 +255,9 @@ body {
 
 .icones {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
+  /*text-align: justify;
+  text-align-last: center;*/
 }
 
 .milieuGauche, .milieuCentre, .milieuDroite {
@@ -201,16 +268,43 @@ body {
 
 #bas {
   /* Taille police en haut */
+  display: flex;
+  align-items: center;
+
   background-color: #f2edfc;
   text-align: center;
   margin-bottom:0px;
+}
+
+#bas img {
+  position: absolute;
+  right: -1000px;
+  box-shadow: -10px 10px 30px -20px rgba(0,0,0,0.75);
+  border-radius: 15px;
+}
+
+#bas img:hover {
+  transition: transform ease 0.3s;
+  transform: scale(1.1);
+  z-index: 9;
+}
+
+.imgSlideRight1 {
+  z-index: 2;
+}
+
+.imgSlideRight2 {
+  margin-top: 5vw;
 }
 
 #bas p {
   /* Taille police en haut */
   font-weight: 300;
   display: inline-block;
-  padding: 0% 5% 0% 5%;
+}
+
+.texteGauche {
+  text-align: center;
 }
 
 #contact {
